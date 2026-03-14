@@ -1,35 +1,389 @@
-# SafeGram.one — Legal Documents
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SafeGram.one — Legal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #080c14;
+      --surface: #0e1420;
+      --border: #1a2235;
+      --accent: #00d4ff;
+      --accent2: #7c3aed;
+      --text: #e8edf5;
+      --muted: #6b7a99;
+      --green: #00e676;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      line-height: 1.8;
+      min-height: 100vh;
+    }
 
-This repository contains the official legal documents for the **SafeGram** Android application.
+    /* ── HEADER ── */
+    header {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(8,12,20,0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 32px;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px;
+    }
+    .logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800; font-size: 20px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      text-decoration: none;
+    }
+    .logo span { color: var(--green); -webkit-text-fill-color: var(--green); }
+    nav { display: flex; gap: 8px; }
+    nav a {
+      padding: 6px 14px; border-radius: 6px;
+      font-size: 13px; font-weight: 500; color: var(--muted);
+      text-decoration: none; transition: all .2s;
+    }
+    nav a:hover { color: var(--text); background: var(--border); }
+    nav a.active { color: var(--accent); background: rgba(0,212,255,.08); }
 
-## 📄 Documents
+    /* ── HERO ── */
+    .hero {
+      text-align: center; padding: 80px 32px 60px;
+      background: radial-gradient(ellipse 70% 50% at 50% 0%, rgba(0,212,255,.08) 0%, transparent 70%);
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 5px 14px; border-radius: 20px;
+      border: 1px solid rgba(0,212,255,.25);
+      background: rgba(0,212,255,.06);
+      font-size: 12px; color: var(--accent); margin-bottom: 20px;
+      font-family: 'Syne', sans-serif; letter-spacing: .05em;
+    }
+    .hero-badge::before { content: '●'; font-size: 8px; animation: blink 2s infinite; }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+    .hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(32px, 5vw, 52px); font-weight: 800;
+      line-height: 1.15; margin-bottom: 14px;
+    }
+    .hero p { color: var(--muted); max-width: 480px; margin: 0 auto; font-size: 16px; }
+    .updated {
+      display: inline-block; margin-top: 16px;
+      font-size: 12px; color: var(--muted);
+      background: var(--surface); border: 1px solid var(--border);
+      padding: 4px 12px; border-radius: 4px;
+    }
 
-| Document | Link |
-|----------|------|
-| Privacy Policy | [View](https://bekzodtangirbergenov-netizen.github.io/konguard-legal/legal.html) |
-| Terms of Service | [View](https://bekzodtangirbergenov-netizen.github.io/konguard-legal/legal.html) |
+    /* ── TABS ── */
+    .tab-bar {
+      display: flex; justify-content: center; gap: 4px;
+      padding: 0 32px 40px;
+    }
+    .tab-btn {
+      padding: 10px 28px; border-radius: 8px; cursor: pointer;
+      font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 600;
+      border: 1px solid var(--border); background: var(--surface);
+      color: var(--muted); transition: all .2s;
+    }
+    .tab-btn:hover { color: var(--text); border-color: rgba(0,212,255,.3); }
+    .tab-btn.active {
+      background: linear-gradient(135deg, rgba(0,212,255,.15), rgba(124,58,237,.15));
+      border-color: var(--accent); color: var(--accent);
+    }
 
-## 🔗 Direct URLs
+    /* ── CONTENT ── */
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    .container { max-width: 760px; margin: 0 auto; padding: 0 32px 100px; }
 
-- **Privacy Policy:**
-  `https://bekzodtangirbergenov-netizen.github.io/konguard-legal/legal.html`
+    .section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px; margin-bottom: 20px;
+      position: relative; overflow: hidden;
+    }
+    .section::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      opacity: 0;
+      transition: opacity .3s;
+    }
+    .section:hover::before { opacity: 1; }
 
-- **Terms of Service:**
-  `https://bekzodtangirbergenov-netizen.github.io/konguard-legal/legal.html`
+    .section-num {
+      font-family: 'Syne', sans-serif; font-size: 11px;
+      color: var(--accent); letter-spacing: .1em; font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .section h2 {
+      font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 700;
+      margin-bottom: 16px; color: var(--text);
+    }
+    .section p { color: #a0aec0; margin-bottom: 12px; }
+    .section p:last-child { margin-bottom: 0; }
+    .section ul {
+      list-style: none; padding: 0; margin: 12px 0;
+    }
+    .section ul li {
+      padding: 6px 0 6px 20px; color: #a0aec0;
+      position: relative;
+    }
+    .section ul li::before {
+      content: '→'; position: absolute; left: 0;
+      color: var(--accent); font-size: 13px;
+    }
+    .highlight-box {
+      background: rgba(0,212,255,.05);
+      border: 1px solid rgba(0,212,255,.15);
+      border-radius: 8px; padding: 16px 20px; margin: 16px 0;
+      font-size: 14px; color: #a0aec0;
+    }
+    .highlight-box strong { color: var(--accent); }
+    a.email-link {
+      color: var(--accent); text-decoration: none; font-weight: 500;
+    }
+    a.email-link:hover { text-decoration: underline; }
 
-## 📱 About SafeGram
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      text-align: center; padding: 32px;
+      color: var(--muted); font-size: 13px;
+    }
+    footer strong { color: var(--text); }
 
-SafeGram is an AI-powered mobile security application for Android that provides:
+    @media (max-width: 600px) {
+      header { padding: 0 16px; }
+      nav { display: none; }
+      .hero { padding: 60px 16px 40px; }
+      .container { padding: 0 16px 80px; }
+      .section { padding: 22px; }
+    }
+  </style>
+</head>
+<body>
 
-- Real-time file scanning for malware and viruses
-- URL checking for malicious links
-- Automatic protection for messaging apps (Telegram, WhatsApp, and more)
-- Threat detection powered by VirusTotal
+<header>
+  <a class="logo" href="#">SafeGram<span>.one</span></a>
+  <nav>
+    <a href="#" class="active" onclick="showTab('privacy',this)">Privacy Policy</a>
+    <a href="#" onclick="showTab('terms',this)">Terms of Service</a>
+  </nav>
+</header>
 
-## 📬 Contact
+<div class="hero">
+  <div class="hero-badge">Legal Documents</div>
+  <h1>Transparency &amp;<br/>Your Privacy</h1>
+  <p>We protect your device. We respect your data. Here's exactly how.</p>
+  <span class="updated">Last updated: March 13, 2026</span>
+</div>
 
-For legal inquiries: **bekzodtangirbergenov@gmail.com**
+<div class="tab-bar">
+  <button class="tab-btn active" onclick="showTab('privacy',this)">Privacy Policy</button>
+  <button class="tab-btn" onclick="showTab('terms',this)">Terms of Service</button>
+</div>
 
----
+<!-- ═══════════════ PRIVACY POLICY ═══════════════ -->
+<div id="tab-privacy" class="tab-content active">
+<div class="container">
 
-*Last updated: March 2026*
+  <div class="section">
+    <div class="section-num">01 — INTRODUCTION</div>
+    <h2>Privacy Policy</h2>
+    <p>SafeGram.one ("we," "our," or "us") operates the SafeGram mobile application (the "App"). This Privacy Policy explains how we collect, use, and protect your information when you use our App.</p>
+    <p>By using SafeGram, you agree to the collection and use of information as described in this policy.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-num">02 — INFORMATION WE COLLECT</div>
+    <h2>What We Collect</h2>
+    <p>We collect the following types of information:</p>
+    <ul>
+      <li><strong>Account Information:</strong> Email address and password when you register</li>
+      <li><strong>Device Information:</strong> Device model, OS version, unique device identifiers</li>
+      <li><strong>Usage Data:</strong> Features used, scan history, app interactions</li>
+      <li><strong>File Metadata:</strong> File names, sizes, and hash values for security scanning (not file content)</li>
+      <li><strong>URL Data:</strong> URLs submitted for security analysis</li>
+      <li><strong>Payment Information:</strong> Transaction reference names submitted for plan verification (no card numbers stored)</li>
+    </ul>
+    <div class="highlight-box">
+      <strong>Important:</strong> We do NOT read the actual content of your personal files or messages. Only metadata and hash values are used for threat detection.
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-num">03 — HOW WE USE YOUR DATA</div>
+    <h2>Use of Information</h2>
+    <p>Your information is used to:</p>
+    <ul>
+      <li>Provide and maintain the security scanning service</li>
+      <li>Detect malware, viruses, and malicious URLs</li>
+      <li>Process subscription payments and manage your account</li>
+      <li>Send important security alerts and service notifications</li>
+      <li>Improve detection accuracy and app performance</li>
+      <li>Comply with legal obligations</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <div class="section-num">04 — ACCESSIBILITY SERVICE</div>
+    <h2>Accessibility Permission</h2>
+    <p>SafeGram uses Android's Accessibility Service to monitor links and files shared through messaging applications (Telegram, WhatsApp, and others) for real-time threat detection.</p>
+    <div class="highlight-box">
+      <strong>Scope:</strong> This permission is used <strong>exclusively</strong> for security scanning. We do not read, store, or transmit the content of your private messages. The service only inspects URLs and file references for known threat signatures.
+    </div>
+    <p>You may disable this permission at any time through Android Settings → Accessibility → SafeGram. Disabling it will turn off real-time messenger protection.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-num">05 — THIRD-PARTY SERVICES</div>
+    <h2>Third Parties</h2>
+    <p>We use the following third-party services:</p>
+    <ul>
+      <li><strong>VirusTotal API</strong> — File hash and URL threat scanning</li>
+      <li><strong>Firebase (Google)</strong> — Authentication and database storage</li>
+    </ul>
+    <p>These services have their own privacy policies. We recommend reviewing them. We do not sell your data to any third party.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-num">06 — DATA RETENTION &amp; SECURITY</div>
+    <h2>Security &amp; Retention</h2>
+    <p>We implement industry-standard security measures including encrypted data transmission (HTTPS/TLS), Firebase security rules restricting data access, and regular security reviews.</p>
+    <p>Your data is retained for as long as your account is active. You may request deletion of your account and associated data by contacting us.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-num">07 — YOUR RIGHTS</div>
+    <h2>Your Rights</h2>
+    <ul>
+      <li>Access the personal data we hold about you</li>
+      <li>Request correction of inaccurate data</li>
+      <li>Request deletion of your account and data</li>
+      <li>Withdraw consent for optional data processing</li>
+      <li>Lodge a complaint with your local data protection authority</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <div class="section-num">08 — CONTACT</div>
+    <h2>Contact Us</h2>
+    <p>For any privacy-related questions or requests, please contact us at:</p>
+    <p><a href="mailto:support@safegram.one" class="email-link">support@safegram.one</a></p>
+    <p>We will respond within 5 business days.</p>
+  </div>
+
+</div>
+</div>
+
+<!-- ═══════════════ TERMS OF SERVICE ═══════════════ -->
+<div id="tab-terms" class="tab-content">
+<div class="container">
+
+  <div class="section">
+    <div class="section-num">01 — AGREEMENT</div>
+    <h2>Terms of Service</h2>
+    <p>These Terms of Service ("Terms") govern your use of the SafeGram.one mobile application. By downloading, installing, or using SafeGram, you agree to be bound by these Terms.</p>
+    <p>If you do not agree to these Terms, please do not use the App.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-num">02 — THE SERVICE</div>
+    <h2>What SafeGram Provides</h2>
+    <p>SafeGram is a mobile security application that provides:</p>
+    <ul>
+      <li>File scanning for malware and viruses</li>
+      <li>URL checking for malicious links</li>
+      <li>Real-time protection for messaging applications</li>
+      <li>Threat detection powered by VirusTotal</li>
+    </ul>
+    <div class="highlight-box">
+      <strong>No guarantees:</strong> SafeGram provides threat detection to the best of its ability but cannot guarantee 100% detection of all threats. Users should maintain safe digital practices alongside using the App.
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-num">03 — SUBSCRIPTIONS &amp; PAYMENTS</div>
+    <h2>Pricing &amp; Plans</h2>
+    <p>SafeGram offers paid subscription plans with different protection levels (70%, 90%, 99%) for file scanning, URL checking, and messenger protection.</p>
+    <p><strong>Payment Process:</strong></p>
+    <ul>
+      <li>Select your desired plan within the App</li>
+      <li>Transfer the subscription fee to the provided payment details</li>
+      <li>Submit your name as a payment reference</li>
+      <li>Our team manually verifies and activates your plan within 24 hours</li>
+    </ul>
+    <p>Subscriptions are non-refundable once the plan has been activated. In case of a dispute, please contact us with your transaction reference.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-num">04 — ACCEPTABLE USE</div>
+    <h2>Acceptable Use</h2>
+    <p>You agree NOT to:</p>
+    <ul>
+      <li>Reverse engineer, decompile, or modify the App</li>
+      <li>Use the App for any illegal purpose</li>
+      <li>Attempt to bypass subscription restrictions</li>
+      <li>Share your account credentials with others</li>
+      <li>Use automated tools to abuse the scanning service</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <div class="section-num">05 — ACCOUNT SUSPENSION</div>
+    <h2>Termination</h2>
+    <p>We reserve the right to suspend or terminate accounts that violate these Terms, engage in fraudulent payment activity, or abuse the service.</p>
+    <p>You may delete your account at any time by contacting our support team.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-num">06 — DISCLAIMER</div>
+    <h2>Limitation of Liability</h2>
+    <p>SafeGram is provided "as is." To the maximum extent permitted by law, SafeGram.one shall not be liable for any indirect, incidental, or consequential damages arising from use of the App, including but not limited to data loss or security breaches resulting from threats not detected by the App.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-num">07 — CHANGES</div>
+    <h2>Updates to These Terms</h2>
+    <p>We may update these Terms from time to time. We will notify you of significant changes via email or an in-app notification. Continued use of the App after changes constitutes acceptance of the updated Terms.</p>
+  </div>
+
+  <div class="section">
+    <div class="section-num">08 — CONTACT</div>
+    <h2>Contact Us</h2>
+    <p>Questions about these Terms?</p>
+    <p><a href="mailto:support@safegram.one" class="email-link">support@safegram.one</a></p>
+  </div>
+
+</div>
+</div>
+
+<footer>
+  <p><strong>SafeGram.one</strong> — AI-powered mobile security</p>
+  <p style="margin-top:8px">© 2026 SafeGram.one. All rights reserved.</p>
+</footer>
+
+<script>
+  function showTab(tab, el) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-btn, nav a').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + tab).classList.add('active');
+    if (el) el.classList.add('active');
+    // sync both nav and tab-bar
+    const idx = tab === 'privacy' ? 0 : 1;
+    document.querySelectorAll('.tab-btn')[idx].classList.add('active');
+    document.querySelectorAll('nav a')[idx].classList.add('active');
+  }
+</script>
+</body>
+</html>
